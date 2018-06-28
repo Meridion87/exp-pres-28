@@ -7,51 +7,56 @@
 
 <p>Crear un empleado</p>
 
-<%= form_with(model: [@company, @employee], local: true) do |form| %>
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
+<div class="col-lg-2">
+  <%= form_with(model: [@company, @employee], local: true) do |form| %>
+    <div class="field">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name %>
+    </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
+    <div class="field">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name %>
+    </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.text_field :email %>
+    </div>
 
-  <div class="field">
-    <%= form.label :area_id %>
-    <!-- <%= form.select :area, [["Single", "single"], ["Married", "married"], ["Engaged", "engaged"], ["In a Relationship", "relationship"]], {}, {class: "form-control"} %> -->
-    <%= form.select :area_id, @areas, {}, {class: "form-control"} %>
-  </div>
+    <div class="field">
+      <%= form.label :area_id %>
+      <!-- <%= form.select :area, [["Single", "single"], ["Married", "married"], ["Engaged", "engaged"], ["In a Relationship", "relationship"]], {}, {class: "form-control"} %> -->
+      <%= form.select :area_id, @areas, {}, {class: "form-control"} %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
-<table class="table">
-  <tr>
-    <th>first name</th>
-    <th>last name</th>
-    <th>email</th>
-    <th>Área</th>
-  </tr>
-  <% @company.employees.each do |emp| %>
-    <tr>
-      <td><%= emp.first_name %></td>
-      <td><%= emp.last_name %></td>
-      <td><%= emp.email %></td>
-      <td><%= emp.area.name %></td>
-      <td><%=link_to "Borrar", company_employee_path(@company, emp), method: :delete, class: 'btn btn-danger'%></td>
-    </tr>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   <% end %>
-</table>
+</div>
+
+
+<div class="col-lg-6">
+  <table class="table">
+    <tr>
+      <th>first name</th>
+      <th>last name</th>
+      <th>email</th>
+      <th>Área</th>
+    </tr>
+    <% @company.employees.each do |emp| %>
+      <tr>
+        <td><%= emp.first_name %></td>
+        <td><%= emp.last_name %></td>
+        <td><%= emp.email %></td>
+        <td><%= emp.area.name %></td>
+        <td><%=link_to "Borrar", company_employee_path(@company, emp), method: :delete, class: 'btn btn-danger'%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
 
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
