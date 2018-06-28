@@ -1,9 +1,58 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre companía:</strong>
   <%= @company.name %>
 </p>
+
+<p>Crear un empleado</p>
+
+<%= form_with(model: [@company, @employee], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :area_id %>
+    <!-- <%= form.select :area, [["Single", "single"], ["Married", "married"], ["Engaged", "engaged"], ["In a Relationship", "relationship"]], {}, {class: "form-control"} %> -->
+    <%= form.select :area_id, @areas, {}, {class: "form-control"} %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<table class="table">
+  <tr>
+    <th>first name</th>
+    <th>last name</th>
+    <th>email</th>
+    <th>Área</th>
+  </tr>
+  <% @company.employees.each do |emp| %>
+    <tr>
+      <td><%= emp.first_name %></td>
+      <td><%= emp.last_name %></td>
+      <td><%= emp.email %></td>
+      <td><%= emp.area.name %></td>
+      <td><%=link_to "Borrar", company_employee_path(@company, emp), method: :delete, class: 'btn btn-danger'%></td>
+    </tr>
+  <% end %>
+</table>
+
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

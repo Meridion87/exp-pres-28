@@ -2,7 +2,16 @@
 
 <h1>Companies</h1>
 
-<table>
+<div class="">
+  <% @areas2.each do |a| %>
+    <span>Nombre categoría: <%= a.name%></span>
+    <span> | Cantidad de empleados: <%= a.employees.count%></span>
+    <br>
+  <% end %>
+</div>
+
+
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -13,10 +22,9 @@
   <tbody>
     <% @companies.each do |company| %>
       <tr>
-        <td><%= company.name %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to company.name, company %></td>
+        <td><%= link_to 'Edit', edit_company_path(company), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

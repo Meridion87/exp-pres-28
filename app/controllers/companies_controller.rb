@@ -5,11 +5,18 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @companies = Company.all
+    @areas2 = Area.all
   end
 
   # GET /companies/1
   # GET /companies/1.json
   def show
+    @employee = Employee.new
+    # @employees = @company.employees
+    # @employees = Employee.find(params[])
+    @areas = Area.pluck(:name, :id)
+
+
   end
 
   # GET /companies/new
