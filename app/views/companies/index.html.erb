@@ -2,14 +2,29 @@
 
 <h1>Companies</h1>
 
-<div class="">
+<!-- <div class="">
   <% @areas2.each do |a| %>
     <span>Nombre categoría: <%= a.name%></span>
     <span> | Cantidad de empleados: <%= a.employees.count%></span>
     <br>
   <% end %>
-</div>
+</div> -->
 
+<div class="col-lg-2">
+  <table class="table">
+    <% @areas2.each do |a| %>
+    <tr>
+      <th>Nombre área</th>
+      <th>cantidad empleados</th>
+    </tr>
+    <tr>
+      <td><%= a.name%></td>
+      <td><%= a.employees.count%></td>
+    </tr>
+    <% end %>
+  </table>
+
+</div>
 
 
 <div class="col-lg-6">
